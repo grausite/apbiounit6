@@ -1,24 +1,9 @@
-const url = "biounit6quiz.pdf"
+let questions = []
 
-let pages = []
-
-pdfjsLib.getDocument(url).promise.then(async function(pdf){
-
-for(let i = 1; i <= pdf.numPages; i++){
-
-let page = await pdf.getPage(i)
-let content = await page.getTextContent()
-
-let text = content.items.map(item => item.str).join(" ")
-
-pages.push({
-page: i,
-text: text.toLowerCase(),
-raw: text
-})
-
-}
-
+fetch("questions.json")
+.then(res => res.json())
+.then(data => {
+questions = data
 })
 
 document.getElementById("search").addEventListener("input", function(){
@@ -30,17 +15,21 @@ results.innerHTML = ""
 
 if(keyword.length < 3) return
 
-pages.forEach(p => {
+questions.forEach(q => {
 
-if(p.text.includes(keyword)){
+let text = q.question.toLowerCase()
+
+if(text.includes(keyword)){
 
 let div = document.createElement("div")
-
 div.className = "result"
 
 div.innerHTML = `
-<div class="page">Page ${p.page}</div>
-<div>${p.raw.substring(0,400)}...</div>
+<div class="qnum">Question #${q.number}</div>
+<div>${q.question}</div>
+<br>
+<div class="answer">Answer: ${q.answer}</div>
+<div class="page">Page #: ${q.page}</div>
 `
 
 results.appendChild(div)
