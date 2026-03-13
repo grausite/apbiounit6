@@ -3,7 +3,7 @@
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AP Bio Question Finder</title>
+<title>AP Bio Question Search</title>
 
 <style>
 
@@ -20,15 +20,24 @@ margin-bottom:20px;
 }
 
 .result{
-padding:15px;
 border:1px solid #ddd;
 border-radius:10px;
+padding:15px;
 margin-bottom:15px;
 }
 
-.page{
+.qnum{
 font-weight:bold;
-color:blue;
+font-size:18px;
+}
+
+.answer{
+color:green;
+font-weight:bold;
+}
+
+.page{
+color:#555;
 }
 
 </style>
@@ -38,13 +47,11 @@ color:blue;
 
 <h2>AP Bio Question Search</h2>
 
-<input id="search" placeholder="type keyword (ex: lac operon)">
+<input id="search" placeholder="Search keyword (ex: lac operon)">
 
 <div id="results"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 <script src="script.js"></script>
 
 </body>
-
 </html>
